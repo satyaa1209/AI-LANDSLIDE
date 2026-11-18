@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Landslide Warning System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌋 <span>Landslide Warning</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#prediction">Prediction</a>
+            <a href="#history">History</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🤖 AI POWERED SYSTEM
+            </div>
+
+            <h1>
+                AI-Based
+                <span>Landslide Warning</span>
+                System
+            </h1>
+
+            <p>
+                Predict landslide risk using environmental conditions
+                and machine learning technology.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#prediction" class="primary-btn">
+                    🔍 Check Landslide Risk
+                </a>
+
+                <a href="#how-it-works" class="secondary-btn">
+                    📖 Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="mountain-card">
+
+                🌋
+
+                <h3>AI Risk Analysis</h3>
+
+                <p>
+                    Real-time environmental prediction
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <span>🤖</span>
+            <h3>AI Powered</h3>
+            <p>Machine Learning Model</p>
+        </div>
+
+        <div class="stat-card">
+            <span>🌧️</span>
+            <h3>Environmental</h3>
+            <p>Data Analysis</p>
+        </div>
+
+        <div class="stat-card">
+            <span>⚡</span>
+            <h3>Fast Prediction</h3>
+            <p>Instant Risk Result</p>
+        </div>
+
+        <div class="stat-card">
+            <span>🚨</span>
+            <h3>Risk Warning</h3>
+            <p>Low / Medium / High</p>
+        </div>
+
+    </section>
+
+
+    <!-- ================= PREDICTION ================= -->
+
+    <section class="prediction-section" id="prediction">
+
+        <div class="section-heading">
+
+            <span>AI PREDICTION</span>
+
+            <h2>Check Landslide Risk</h2>
+
+            <p>
+                Enter environmental conditions to analyze the
+                possibility of a landslide.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🌧️ Environmental Data</h2>
+
+            <div class="input-group">
+
+                <label for="rainfall">
+                    Rainfall (mm)
+                </label>
+
+                <input
+                    type="number"
+                    id="rainfall"
+                    placeholder="Enter rainfall"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="slope">
+                    Slope Angle (°)
+                </label>
+
+                <input
+                    type="number"
+                    id="slope"
+                    placeholder="Enter slope angle"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="soil">
+                    Soil Saturation (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="soil"
+                    placeholder="Enter soil saturation"
+                >
+
+            </div>
+
+
+            <!-- ================= LOCATION INFORMATION ================= -->
+
+            <div class="location-box">
+
+                <h3>📍 Location Information</h3>
+
+                <p class="location-description">
+                    Enter the geographical coordinates of the area being analyzed.
+                </p>
+
+                <div class="input-group">
+
+                    <label for="latitude">
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="latitude"
+                        step="any"
+                        min="-90"
+                        max="90"
+                        placeholder="e.g. 30.3165"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="longitude">
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="longitude"
+                        step="any"
+                        min="-180"
+                        max="180"
+                        placeholder="e.g. 78.0322"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="location-btn"
+                    id="locationBtn">
+
+                    📍 Use My Current Location
+
+                </button>
+
+
+                <p
+                    class="location-status"
+                    id="locationStatus">
+                </p>
+
+            </div>
+
+
+            <button
+                class="predict-btn"
+                id="predictBtn">
+
+                🔍 Predict Landslide Risk
+
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="card result" id="result-card">
+
+            <h2>📊 Prediction Result</h2>
+
+            <!-- REAL-TIME RISK ALERT -->
+
+            <div id="alertBanner" class="alert-banner hidden" role="alert">
+
+                <div class="alert-icon" id="alertIcon">
+                    🚨
+                </div>
+
+                <div class="alert-content">
+
+                    <div class="alert-title" id="alertTitle">
+                        LANDSLIDE WARNING
+                    </div>
+
+                    <div class="alert-message" id="alertMessage">
+                        High landslide risk detected.
+                    </div>
+
+                    <div class="alert-details" id="alertDetails">
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="alert-close"
+                    onclick="closeRiskAlert()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div id="result">
+
+                <p class="result-message">
+                    Enter environmental data to check landslide risk.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-section" id="how-it-works">
+
+        <div class="section-heading">
+
+            <span>HOW IT WORKS</span>
+
+            <h2>Simple. Fast. Intelligent.</h2>
+
+            <p>
+                Our system analyzes environmental conditions
+                and provides an AI-based risk prediction.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step-card">
+
+                <div class="step-number">01</div>
+
+                <div class="step-icon">🌧️</div>
+
+                <h3>Enter Data</h3>
+
+                <p>
+                    Enter rainfall, slope angle and soil saturation.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">02</div>
+
+                <div class="step-icon">🤖</div>
+
+                <h3>AI Analysis</h3>
+
+                <p>
+                    Machine learning model analyzes the conditions.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">03</div>
+
+                <div class="step-icon">📊</div>
+
+                <h3>Risk Prediction</h3>
+
+                <p>
+                    System calculates the landslide probability.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">04</div>
+
+                <div class="step-icon">🚨</div>
+
+                <h3>Warning</h3>
+
+                <p>
+                    Get LOW, MEDIUM or HIGH risk information.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PREDICTION HISTORY ================= -->
+
+    <section class="history-section" id="history">
+
+        <div class="section-heading">
+
+            <span>PREDICTION HISTORY</span>
+
+            <h2>Previous Predictions</h2>
+
+            <p>
+                View previous landslide risk predictions and
+                environmental data.
+            </p>
+
+        </div>
+
+
+        <div class="history-card">
+
+            <div class="history-header">
+
+                <div>
+
+                    <h2>📋 Prediction Records</h2>
+
+                    <p>
+                        Saved AI prediction results
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="refresh-btn"
+                    onclick="loadHistory()">
+
+                    🔄 Refresh History
+
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Rainfall</th>
+                            <th>Slope</th>
+                            <th>Soil Saturation</th>
+                            <th>Landslide Probability</th>
+                            <th>No Landslide</th>
+                            <th>Risk</th>
+                            <th>Date & Time</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="historyTableBody">
+
+                        <tr>
+
+                            <td colspan="8">
+                                Loading prediction history...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ANALYTICS ================= -->
+
+    <section class="analytics-section" id="analytics">
+
+        <div class="section-heading">
+
+            <span>PREDICTION ANALYTICS</span>
+
+            <h2>Risk Overview</h2>
+
+            <p>
+                Quick overview of all previous landslide predictions.
+            </p>
+
+        </div>
+
+
+        <div class="analytics-cards">
+
+            <div class="analytics-card">
+
+                <div class="analytics-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <h3 id="totalPredictions">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Predictions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-card low-card">
+
+                <div class="analytics-icon">
+                    🟢
+                </div>
+
+                <div>
+
+                    <h3 id="lowPredictions">
+                        0
+                    </h3>
+
+                    <p>
+                        Low Risk
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-card medium-card">
+
+                <div class="analytics-icon">
+                    🟡
+                </div>
+
+                <div>
+
+                    <h3 id="mediumPredictions">
+                        0
+                    </h3>
+
+                    <p>
+                        Medium Risk
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-card high-card">
+
+                <div class="analytics-icon">
+                    🔴
+                </div>
+
+                <div>
+
+                    <h3 id="highPredictions">
+                        0
+                    </h3>
+
+                    <p>
+                        High Risk
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RAINFALL ANALYTICS ================= -->
+
+    <section class="chart-section" id="charts">
+
+        <div class="section-heading">
+
+            <span>VISUAL ANALYTICS</span>
+
+            <h2>Prediction Analysis</h2>
+
+            <p>
+                Visual representation of previous landslide risk predictions.
+            </p>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h2>
+                        📈 Rainfall vs Landslide Probability
+                    </h2>
+
+                    <p>
+                        Comparison of rainfall and predicted
+                        landslide probability
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas id="predictionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         RISK DISTRIBUTION
+         ================================================== -->
+
+    <section
+        class="risk-chart-section"
+        id="risk-distribution">
+
+        <div class="section-heading">
+
+            <span>RISK DISTRIBUTION</span>
+
+            <h2>Overall Risk Analysis</h2>
+
+            <p>
+                Distribution of low, medium and high risk predictions.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN RISK CARD -->
+
+        <div class="risk-chart-card">
+
+
+            <!-- LEFT INFORMATION -->
+
+            <div class="risk-info">
+
+                <div class="risk-info-icon">
+                    🎯
+                </div>
+
+                <h2>
+                    Risk Level Distribution
+                </h2>
+
+                <p>
+                    Based on previous prediction records
+                </p>
+
+
+                <!-- RISK SUMMARY -->
+
+                <div class="risk-summary">
+
+
+                    <!-- LOW -->
+
+                    <div class="risk-summary-item">
+
+                        <span class="dot low-dot"></span>
+
+                        <div>
+
+                            <strong id="riskLowCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Low Risk
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MEDIUM -->
+
+                    <div class="risk-summary-item">
+
+                        <span class="dot medium-dot"></span>
+
+                        <div>
+
+                            <strong id="riskMediumCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Medium Risk
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HIGH -->
+
+                    <div class="risk-summary-item">
+
+                        <span class="dot high-dot"></span>
+
+                        <div>
+
+                            <strong id="riskHighCount">
+                                0
+                            </strong>
+
+                            <span>
+                                High Risk
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT CHART -->
+
+            <div class="risk-chart-container">
+
+                <canvas id="riskChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about-section" id="about">
+
+        <div class="about-content">
+
+            <span>
+                ABOUT THE PROJECT
+            </span>
+
+            <h2>
+                Intelligent Landslide
+                Risk Monitoring
+            </h2>
+
+            <p>
+                The Landslide Warning System is an AI-based project
+                designed to analyze environmental factors and
+                estimate the probability of landslide occurrence.
+            </p>
+
+            <p>
+                The system combines a machine learning model with
+                a web-based interface to provide fast and easy
+                risk assessment.
+            </p>
+
+        </div>
+
+
+        <div class="about-box">
+
+            <div>
+
+                <strong>
+                    34+
+                </strong>
+
+                <span>
+                    AI Features
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    97%+
+                </strong>
+
+                <span>
+                    Model Accuracy
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    3
+                </strong>
+
+                <span>
+                    Risk Levels
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-title">
+            🌋 Landslide Warning System
+        </div>
+
+        <p>
+            AI-Based Landslide Risk Prediction System
+        </p>
+
+        <div class="developer">
+
+            Developed by
+            <strong>Satyam</strong>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 Landslide Warning System.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= CHART.JS ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- MAIN SCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
